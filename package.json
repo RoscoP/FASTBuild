@@ -1,0 +1,31 @@
+{
+    "name": "fastbuild",
+    "displayName": "FASTBuild",
+    "description": "FASTBuild configuration syntax highlighting",
+    "version": "1.0.0",
+    "publisher": "RoscoP",
+    "engines": {
+        "vscode": "^1.14.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "icon": "media/icon.png",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/RoscoP/FASTBuild"
+    },
+    "contributes": {
+        "languages": [{
+            "id": "fastbuild",
+            "aliases": ["FASTBuild", "fastbuild"],
+            "extensions": ["bff"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "fastbuild",
+            "scopeName": "source.fastbuild",
+            "path": "./syntaxes/fastbuild.tmLanguage.json"
+        }]
+    }
+}
