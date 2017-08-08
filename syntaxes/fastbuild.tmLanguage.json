@@ -1,0 +1,119 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "FASTBuild",
+    "foldingStartMarker": "/\\*\\*(?!\\*)|^(?![^{]*?//|[^{]*?/\\*(?!.*?\\*/.*?\\{)).*?\\{\\s*($|//|/\\*(?!.*?\\*/.*\\S))",
+    "foldingStopMarker": "(?<!\\*)\\*\\*/|^\\s*\\}",
+	"patterns": [
+		{
+			"include": "#keywords"
+        },
+		{
+			"include": "#functions"
+		},
+		{
+			"include": "#strings_single"
+		},
+		{
+			"include": "#strings_double"
+		},
+		{
+			"include": "#fastbuild_defines"
+		},
+		{
+			"include": "#directives"
+        },
+		{
+			"include": "#defined_variables"
+        },
+		{
+			"include": "#local_variables"
+        },
+		{
+			"include": "#comment"
+        }
+	],
+	"repository": {
+        "string_highlight": {
+            "patterns": [{
+                "name": "constant.character.escape.fastbuild",
+                "match": "\\^.|\\$[\\w\\d]+\\$|%\\d+"
+            }]
+        },
+        "keywords": {
+			"patterns": [{
+				"name": "keyword.operator.fastbuild",
+				"match": "\\b(\\+\\-/\\*=)\\b"
+            }]
+        },
+		"functions": {
+			"patterns": [{
+				"name": "support.function.fastbuild",
+				"match": "\\b(Alias|Compiler|Copy|CopyDir|CSAssembly|DLL|Exec|Executable|ForEach|Library|ObjectList|Print|RemoveDir|Settings|Test|Unity|Using|VCXProject|VSSolution|XCodeProject)\\b"
+            }]
+        },
+		"strings_single": {
+			"name": "string.quoted.single.fastbuild",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+                    "include": "#string_highlight"
+                }
+			]
+        },
+		"strings_double": {
+			"name": "string.quoted.double.fastbuild",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+                    "include": "#string_highlight"
+                }
+			]
+        },
+        "fastbuild_defines": {
+            "patterns": [
+                {
+                    "name": "variable.language.fastbuild",
+                    "match": "__WINDOWS__|__OSX__|__LINUX__"
+                }
+            ]
+        },       
+		"directives": {
+			"patterns": [{
+				"name": "keyword.other.fastbuild",
+				"match": "#(undef|if|else|endif|exists|import|include|once)"
+			}]
+        },
+        "defined_variables": {
+			"patterns": [{
+				"name": "keyword.other.fastbuild",
+                "match": "#define\\s+([\\w\\d]+)",
+                "captures": {
+                    "1": {
+                        "name": "meta.parameter.type.variable.fastbuild"
+                    }
+                }
+			}]
+        },
+        "local_variables": {
+			"patterns": [{
+                "match": "[\\s^]\\.(['\"]?)([\\w\\d\\$]+)\\1?",
+                "captures": {
+                    "2": {
+                        "name": "variable.other.fastbuild"
+                    }
+                }
+			}]
+        },
+        "comment": {
+			"patterns": [
+				{
+					"name": "comment.line.double-slash.fastbuild",
+					"match": "(//|;).*"
+				}
+			]
+        }
+	},
+	"scopeName": "source.fastbuild"
+}
